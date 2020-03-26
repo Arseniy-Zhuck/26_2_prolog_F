@@ -97,8 +97,39 @@ count_words([32|T],I,K,1,F):-count_words(T,I,K,1,F),!.
 count_words([_|T],I,K,_,0):-I1 is I+1,count_words(T,I1,K,0,1).
 count_words([_|T],I,K,_,1):-count_words(T,I,K,0,0).*/
 
+build_all_razm_p:-
+		read_str(A,N),read(K),b_a_rp(A,K,[]).
+		
+b_a_rp(A,0,Perm1):-write_str(Perm1),nl,!,fail.
+b_a_rp(A,N,Perm):-in_list(A,El),N1 is N-1,b_a_rp(A,N1,[El|Perm]).
+
+build_all_razm:-
+		read_str(A,N),read(K),b_a_r(A,[]).
+
+in_list_exlude([El|T],El,T).
+in_list_exlude([H|T],El,[H|Tail]):-in_list_exlude(T,El,Tail).
+
+b_a_r([],Perm1):-write_str(Perm1),nl,!,fail.
+b_a_r(A,Perm):-in_list_exlude(A,El,A1),b_a_r(A1,[El|Perm]).
 
 
+sub_posl([],_):-!.
+sub_posl(_,[]):-fail,!.
+sub_posl([H|Sub_list],[H|List]):-sub_posl(Sub_list,List),!.
+sub_posl(Sub_list,[_|List]):-sub_posl(Sub_list,List).
+
+sub_set([],[]).
+sub_set([H|Sub_set],[H|Set]):-sub_set(Sub_set,Set).
+sub_set(Sub_set,[H|Set]):-sub_set(Sub_set,Set).
+
+r_list(A,N):-r_list(A,N,0,[]).
+r_list(A,N,N,A):-!.
+r_list(A,N,K,B):-read(X),append(B,[X],B1),K1 is K+1,r_list(A,N,K1,B1).
+
+pr_subset:-read(N),r_list(A,N),sub_set(B,A),write(B),nl,fail.
+
+in_list([El|_],El).
+in_list([_|T],El):-in_list(T,El).
 
 
 
