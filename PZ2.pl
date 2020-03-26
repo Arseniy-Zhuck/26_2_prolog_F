@@ -130,7 +130,9 @@ pr_subset:-read(N),r_list(A,N),sub_set(B,A),write(B),nl,fail.
 
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
-
+sochet([],0,_):-!.
+sochet([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet(Sub_set,K1,Set).
+sochet(Sub_set,K,[H|Set]):-sochet(Sub_set,K,Set).
 
 
 
