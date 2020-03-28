@@ -135,5 +135,117 @@ sochet([H|Sub_set],K,[H|Set]):-K1 is K-1,sochet(Sub_set,K1,Set).
 sochet(Sub_set,K,[H|Set]):-sochet(Sub_set,K,Set).
 
 
+make_alot(A,Set,K):-make_alot(A,Set,K,K).
+make_alot([],[],_,_):-!.
+make_alot(Sub_set,[H|T],K,0):-make_alot(Sub_set,T,K,K),!.
+make_alot([H|Tail],[H|T],K,I):-I1 is I-1,make_alot(Tail,[H|T],K,I1).
+
+
+sochet_rep(Sub_set,Set,K):-
+		make_alot(Set_rep,Set,K),sochet(Sub_set,K,Set_rep).
+
+
+pr_ein:- Houses=[_,_,_,_,_],
+		
+		in_list(Houses,[red,english,_,_,_]),
+		in_list(Houses,[_,spanish,_,dog,_]),
+		in_list(Houses,[green,_,coffee,_,_]),
+		in_list(Houses,[_,ukrain,tea,_,_]),
+		sprava_next([green,_,_,_,_],[white,_,_,_,_],Houses),
+		in_list(Houses,[_,_,_,ulitka,old_gold]),
+		in_list(Houses,[yellow,_,_,_,kool]),
+		el_no(Houses,3,[_,_,milk,_,_]),
+		el_no(Houses,1,[_,norway,_,_,_]),
+		next_to([_,_,_,_,chester],[_,_,_,fox,_],Houses),
+		next_to([_,_,_,_,kool],[_,_,_,horse,_],Houses),
+		in_list(Houses,[_,_,orange,_,lucky]),
+		in_list(Houses,[_,japan,_,_,parlament]),
+		next_to([_,norway,_,_,_],[blue,_,_,_,_],Houses),
+		
+		
+		in_list(Houses,[_,WHO1,water,_,_]),
+		in_list(Houses,[_,WHO2,_,zebra,_]),
+		write(Houses),nl,
+		write(WHO1),nl,write(WHO2).
+
+/*
+Имеется четыре котенка – Дружок, Елисей, Фантик и Мурлыка и четыре мальчика – Миша, Максим, Леня и Дима. 
+Каждый мальчик взял себе котенка любимого цвета. При этом: 
+1. Фантик – не рыжий, Мурлыка – не серый
+2. Дружок – не белый, Елисей – не серый
+3. У Миши – черный котенок, У Максима – Мурлыка
+4. У Лени – Елисей, У Димы – белый котенок
+5. Дима не взял Фантика, Дружок – не серый
+Одно из этих пяти утверждений ложное, У какого мальчика какой котенок?
+*/
+in_list([El|_],El).
+in_list([_|T],El):-in_list(T,El).
+
+pr7_1:- List[_,_,_,_],
+	(
+	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white])
+	);
+	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+	);
+	(
+		(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+		
+	);
+	(
+		(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
+		in_list(List,[_,fantic,black])),
+		(in_list(List,[_,murl,white]);in_list(List,[_,murl,grey]);
+		in_list(List,[_,murl,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+		
+	);
+	(
+		(in_list(List,[_,dru,black]);in_list(List,[_,dru,grey]);
+		in_list(List,[_,dru,red])),
+		(in_list(List,[_,elis,white]);in_list(List,[_,elis,black]);
+		in_list(List,[_,elis,red])),
+		in_list(List,[misha,_,black]),in_list(List,[maksim,murl,_]),
+		in_list(List,[leo,elis,_]),in_list(List,[dima,_,white]),
+		(in_list(List,[dima,murl,_]);in_list(List,[dima,dru,_]);
+		in_list(List,[dima,elis,)]))
+	)
+	),
+	write(List).
+		
+		
+
+
 
 
