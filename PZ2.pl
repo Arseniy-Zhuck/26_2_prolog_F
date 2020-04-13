@@ -181,7 +181,7 @@ pr_ein:- Houses=[_,_,_,_,_],
 in_list([El|_],El).
 in_list([_|T],El):-in_list(T,El).
 
-pr7_1:- List[_,_,_,_],
+pr7_1:- List = [_,_,_,_],
 	(
 	(	(in_list(List,[_,fantic,white]);in_list(List,[_,fantic,grey]);
 		in_list(List,[_,fantic,black])),
@@ -243,6 +243,10 @@ pr7_1:- List[_,_,_,_],
 	)
 	),
 	write(List).
+	
+	
+
+	
 		
 		
 

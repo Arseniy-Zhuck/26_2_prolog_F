@@ -1,12 +1,22 @@
-high(ruby,1).
-high(c_sharp,1).
-high(python,1).
-high(c_plu_plus,1).
-high(f_sharp,1).
-high(prolog,1).
-high(c,0).
-high(asm,0).
+:- dynamic high/2.
+read_str(A,N):-get0(X),r_str(X,A,[],N,0).
+r_str(10,A,A,N,N):-!.
+r_str(X,A,B,N,K):-K1 is K+1,append(B,[X],B1),get0(X1),r_str(X1,A,B1,N,K1).
+pr1:-read_str(X,N),name(A,X),asserta(high(A,1)).
+high_r(X,Y):-repeat, (high(X,Y) -> (write(X),nl,write(Y),nl,retract(high(X,Y))) ;X=nil,Y=nil).
+pr2:-tell('c:/Prolog/26_2_prolog_F/111.txt'),high_r(X,Y),X=nil,told.
+pr3:-see('c:/Prolog/26_2_prolog_F/111.txt'),read_high,seen.
+read_high:-
 
+%high(ruby,1).
+%high(c_sharp,1).
+%high(python,1).
+%high(c_plu_plus,1).
+%high(f_sharp,1).
+%high(prolog,1).
+%high(c,0).
+%high(asm,0).
+	
 decl(ruby,0).
 decl(c_sharp,0).
 decl(python,0).
