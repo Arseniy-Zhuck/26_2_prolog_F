@@ -11,7 +11,7 @@ let main argv =
     let p1_1 x y =
         if x>y then x
         else y 
-    let A = p1_1 b,c
+    let A = p1_1 b c
     System.Console.Write(A)
     
     let rec f n =
