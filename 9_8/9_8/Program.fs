@@ -1,4 +1,4 @@
-﻿// Learn more about F# at http://fsharp.net
+// Learn more about F# at http://fsharp.net
 // See the 'F# Tutorial' project for more help.
 let non_del X Y = 
     if X % Y =0   then false
@@ -23,6 +23,25 @@ let n_pd a = npd a a
 let p9_8 = 
     let a= System.Convert.ToInt32(System.Console.ReadLine())
     n_pd a
+
+let rec gcd x y =
+    if y =0 then x
+    else gcd y (x % y)
+
+let p9_9 =
+    let c= System.Convert.ToInt32(System.Console.ReadLine())
+    let d= System.Convert.ToInt32(System.Console.ReadLine())
+    gcd c d
+
+let rec fe a b c = 
+    if (b = 0) then c
+    else if (gcd a b = 1) then fe a (b-1) (c+1)
+    else fe a (b-1) c
+       
+
+let p9_10 =
+    let a= System.Convert.ToInt32(System.Console.ReadLine())
+    fe a (a-1) 0
 
 
 [<EntryPoint>]
