@@ -23,5 +23,5 @@ let main argv =
     System.Console.Write(Ans)
     let z = System.Console.ReadKey()        
     
-    printfn "%A" argv
+    
     0 // return an integer exit code

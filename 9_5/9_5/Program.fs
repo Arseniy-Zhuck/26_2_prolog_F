@@ -25,6 +25,5 @@ let main argv =
     
     let Ans = p9_5
     System.Console.Write(Ans)
-    let z = System.Console.ReadKey()
     
     0 // return an integer exit code
